@@ -31,8 +31,6 @@ async def broadcastMessage(data):
             pass
 
 
-#/////////////////////////
-
 async def broadcastNewClients(data,newClientId):
     # create response message (someone has joined the chat)
     oldClientMessage = data["name"] + " has joined the chat"
@@ -49,12 +47,6 @@ async def broadcastNewClients(data,newClientId):
             except ConnectionClosedOK:
                 pass
 
-    # check client ID
-    # send messages if needed
-    
-    
-
-# ////////////////////////////////
 
 async def handler(websocket):
     # before anything send previous chats to this client
