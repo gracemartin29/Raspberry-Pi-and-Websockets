@@ -41,7 +41,7 @@ async def broadcastNewClients(data,newClientId):
         # if websocket.id = current client -> do nothing
         if(websocket.id == newClientId):
             await websocket.send(json.dumps({"message" : newClientMessage}))
-        else: 
+        else: # if websocket.id = old client -> new user message
             try:
                 await websocket.send(json.dumps({"message" : oldClientMessage}))
             except ConnectionClosedOK:
@@ -61,9 +61,8 @@ async def handler(websocket):
             continue
         
         if("name" in data) :
-            await broadcastNewClients(data, websocket.id)
-            # call new user function
-
+            await broadcastNewClients(data, websocket.id) # call new user function
+            
         if("led" in data) :
             if(data["led"] == "toggle"):
                 led.toggle()
